@@ -1,25 +1,14 @@
-import {createConnection,endConnection} from '../middleware/mySql.js';
+import { executeQuery } from '../middleware/mySql.js';
+import Constants from '../constants.js';
 
-let addUserService = async function(req) {
-    const {email,LastName,FirstName,City,Country,Phone} = req.body;
-    let con = await createConnection();
-    let sql = 'INSERT INTO sys.Users (email,LastName,FirstName,City,Country,Phone) VALUES (\''+email+'\',\''+LastName+'\',\''+FirstName+'\',\''+City+'\',\''+Country+'\',\''+Phone+'\');';
-    // console.log(sql);
-    return new Promise((resolve, reject) => {
+export async function addUserService(req) {
+    const { email, LastName, FirstName, City, Country, Phone } = req.body;
+    return new Promise(async (resolve, reject) => {
         try {
-            con.query(sql, function (err, result) {
-                if (err) {
-                    reject(err);
-                    return;
-                }
-                resolve(result);
-            });
-        } catch(err) {
-            console.log(err);
-        } finally {
-            endConnection(con);
+            const results = await executeQuery(Constants.INSERT_USER_QUERY, [email, LastName, FirstName, City, Country, Phone]);
+            resolve(results);
+        } catch (error) {
+            reject(error);
         }
     });
 }
-
-export {addUserService}
