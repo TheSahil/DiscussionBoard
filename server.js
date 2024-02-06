@@ -1,23 +1,13 @@
-var mysql = require('mysql');
-var dotenv = require('dotenv');
-dotenv.config();
+import { Router } from 'express';
+import express from 'express';
+import userRouter from './src/routes/userRoutes.js';
+import bodyParser from 'body-parser';
 
-var con = mysql.createConnection({
-	host: process.env.SQL_HOST,
-	user: process.env.SQL_USER,
-	password: process.env.SQL_PW
+const app = express();
+app.use(bodyParser.json());
+app.use(userRouter);
+app.get('/', (req, res) => {
+  res.send('Successful response.');
 });
 
-// console.log(process.env.SQL_HOST);
-// console.log(process.env.SQL_USER);
-// console.log(process.env.SQL_PW);
-
-con.connect(function(err) {
-	if (err) throw err;
-	console.log("Connected!");
-	sql = 'select * from sys.Users;';
-	con.query(sql, function (err, result) {
-	  if (err) throw err;
-	  console.log(result);
-	});
-});
+app.listen(5000, () => console.log('App is listening on port 5000.'));
