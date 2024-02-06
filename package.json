@@ -1,7 +1,9 @@
 {
   "dependencies": {
+    "dotenv": "^16.4.1",
     "express": "^4.18.2",
-    "license": "^1.0.3"
+    "license": "^1.0.3",
+    "mysql": "^2.18.1"
   },
   "name": "discussionboard",
   "version": "1.0.0",
