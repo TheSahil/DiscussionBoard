@@ -3,8 +3,11 @@ import express from 'express';
 import userRouter from './src/routes/userRoutes.js';
 import communityRouter from './src/routes/communityRoutes.js';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 const app = express();
+app.use(cors());
+
 app.use(bodyParser.json());
 app.use(userRouter);
 app.use(communityRouter);
