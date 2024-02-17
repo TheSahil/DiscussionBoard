@@ -23,7 +23,8 @@ Constants.INSERT_USER_QUERY = "INSERT INTO " + Constants.DB_SCHEMA.TABLES.USERS 
 Constants.SELECT_ALL_USERS_QUERY = "SELECT * FROM " + Constants.DB_SCHEMA.TABLES.USERS;
 Constants.GET_COMMUNITY_FOR_USER = "SELECT CommunityName, CommunityID FROM " + Constants.DB_SCHEMA.TABLES.COMMUNITIES + " WHERE communityID IN (SELECT community_id FROM " + Constants.DB_SCHEMA.TABLES.COMMUNITYUSERS + " WHERE user_id = ?)";
 Constants.Get_COMMUNITY = "SELECT * FROM " + Constants.DB_SCHEMA.TABLES.COMMUNITIES + " WHERE CommunityID = ?";
-Constants.CHECK_USER = "SELECT * FROM " + Constants.DB_SCHEMA.TABLES.USERS + " WHERE email = ?";
+Constants.GET_USER_QUERY = "SELECT * FROM " + Constants.DB_SCHEMA.TABLES.USERS + " WHERE email = ?";
+Constants.UPDATE_USER_QUERY = "UPDATE " + Constants.DB_SCHEMA.TABLES.USERS + " SET `LastName`=?,`FirstName`=?,`City`=?,`Country`=?,`Phone`=? WHERE `email`=?";
 
 Constants.USER_EXISTS = { "message": "user exists", "result": true };
 Constants.USER_DOES_NOT_EXIST = { "message": "user does not exist", "result": false };
